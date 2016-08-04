@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="spine-libgdx">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/spine-libgdx.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
