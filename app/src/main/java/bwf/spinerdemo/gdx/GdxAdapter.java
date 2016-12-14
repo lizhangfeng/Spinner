@@ -48,27 +48,27 @@ public class GdxAdapter extends ApplicationAdapter {
         renderer = new SkeletonRenderer();
         renderer.setPremultipliedAlpha(true); // PMA results in correct blending without outlines.
 
-//        atlas = new TextureAtlas(Gdx.files.internal("spineboy/spineboy.atlas"));
-        atlas = new TextureAtlas(Gdx.files.internal("vae/xusong.atlas"));
+        atlas = new TextureAtlas(Gdx.files.internal("spineboy/spineboy.atlas"));
+//        atlas = new TextureAtlas(Gdx.files.internal("vae/xusong.atlas"));
         json = new SkeletonJson(atlas); // This loads skeleton JSON data, which is stateless.
 //        json.setScale(0.5f); // Load the skeleton at 60% the size it was in Spine.
-//        SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("spineboy/spineboy.json"));
-        SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("vae/xusong.json"));
+        SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("spineboy/spineboy.json"));
+//        SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("vae/xusong.json"));
 
         skeleton = new Skeleton(skeletonData); // Skeleton holds skeleton state (bone positions, slot attachments, etc).
         skeleton.setPosition(DisplayUtil.getDensity_Width(context) / 2, DisplayUtil.getDensity_Height(context) / 3);
 
         AnimationStateData stateData = new AnimationStateData(skeletonData); // Defines mixing (crossfading) between animations.
 //        stateData.setMix("run", "jump", 0.2f);
-//        stateData.setMix("jump", "run", 0.2f);
+        stateData.setMix("jump", "run", 0.2f);
 
         state = new AnimationState(stateData); // Holds the animation state for a skeleton (current animation, time, etc).
 //        state.setTimeScale(0.5f); // Slow all animations down to 50% speed.
 
         // Queue animations on track 0.
-//        state.setAnimation(0, "run", true);
+        state.setAnimation(0, "run", true);
 
-//        state.addAnimation(0, "run", true, 0); // Run after the jump.
+        state.addAnimation(0, "run", true, 0); // Run after the jump.
     }
 
     public void render() {
